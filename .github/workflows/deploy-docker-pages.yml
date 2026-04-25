@@ -44,7 +44,7 @@ jobs:
         run: |
           docker pull ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_TAG }}
           docker create --name temp-container ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_TAG }}
-          docker cp temp-container:/usr/share/nginx/html ./dist
+          docker cp temp-container:/usr/share/nginx/html/portfolio ./dist
           docker rm temp-container
 
       - name: Upload artifact
