@@ -19,7 +19,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Load environment variables
-        run: cat .env.local >> $GITHUB_ENV
+        run: |
+          # Filter out empty lines and comments, then export variables to GITHUB_ENV
+          grep -v '^\s*$' .env.local | grep -v '^\s*#' | while IFS= read -r line; do
+          echo "$line" >> "$GITHUB_ENV"
 
       - name: Echo environment variables
         run: |
